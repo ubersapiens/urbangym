@@ -1,0 +1,104 @@
+STEP BY STEP APP BUILDING DOCUMENTATION 
+
+1. Create rails new app
+>>rails new urbanmonkey
+>>cd urbanmonkey
+
+2. Add gems in GEM File
+*Binding of Caller (error comprehension)
+*Better Errors (error comprehension)
+*Postgers, PG (databases)
+*Railroady (visualisation of data models/controllers)
+
+>>bundle update
+
+3. Change database info to utilise POSTGRESQL
+-config/database.yml
+
+4. Create database
+>>rake db:create
+
+5. Create models for User, Gym and UserGym (join table)
+>>rails generate model User email:string password:string name:string date_of_birth:date my_workout:text my_diet:text
+
+>>rails generate model Gym full_street_address:string latitude:float longitude:float description:text picture:string
+>>rails generate model UserGym user:references gym:references is_favorite: boolean
+
+6. Modify model files: user.rb, gym.rb and usergym.rb
+User.rb
+attr needs to have :gyms, :user_gyms **Always plural due to many to may relationship
+has_many :user_gyms **User can access join table directly
+has_many :gyms, :through => :user_gyms **User can access Gyms through join table 
+Gym.rb
+attr needs to have :users, :user_gyms **Always plural due to many to may relationship
+has_many :user_gyms **Gym can access join table directly
+has_many :gyms, :through => :user_gyms **Gym can access Users through join table
+UserGym.rb (join table)
+attr needs to have :user, :gym **Always singular due to many to one relationship
+belongs_to :user **Join table has relationship with one User
+belongs_to :gym **Join table has relationship with one Gym
+
+7. Run database migration
+**Before running migration check the migration files, specially the join table.
+>>rake db:migrate
+
+**If any errors are made when migrating the created models we should run rollback on the migration, make the necessary changes on the code and then run the migration again.
+>>rake db:rollback
+>>rake db:migrate
+
+8. Run rails console and create a database entry (check functionality)
+>>rails console
+>>u = User.new(:email => 'john@hotmail.com', :password => '1234', :name => 'John')
+>>u.save
+>>g = Gym.new(:full_street_address => '123 Street, NY', :description => 'monkey bars')
+>>g.save
+>>ug = UserGym.new(:user => u, :gym => g, :is_favorite => true)
+>>ug.save
+
+**To clear a table after a few trys run table name.delete_all (i.e. UserGym.delete_all)
+
+9. Create models for Exercise and UserExercise (join table)
+>>rails generate model Exercise name:string description:text picture:string
+>>rails generate model UserExercise user:references exercise:references done_on:date reps:integer time:float
+
+10. Modify model files: exercise.rb and userexercise.rb
+Modify -> User.rb
+More attr needed :exercises, user_exercises
+has_many :user_exercises
+has_many :exercises, :through => :user_exercises
+Exercise.rb
+attr needs to have :users, :user_exercises
+has_many :user_exercises 
+has_many :users, :through => :user_exercises
+UserExercise.rb (join table)
+attr needs to have :user, :exercise
+belongs_to :user
+belongs_to :exercise 
+
+**Then go through Step 7 and 8 again to test functionality.
+
+11. Create controller for Gym
+>>rails generate controller Gyms index new create show edit update destroy
+
+12. Tinker the controller actions
+Starting with index, which can be easily modified.
+Then with new and create. Create a partial form to implement with edit/update after.
+
+Partial form will not have to implement :latitude :longitude because geocoder will take them as mutable variables from the full_street_address variable.
+
+13. Add gem in GEM file
+*Geocoder
+
+>>bundle update
+
+14. Incorporate the Geocoder gem into Gym.rb
+Below the attributes and the relationships include the following:
+     geocoded_by :full_street_address *Will transform address variable into latitude/longitude.
+     after_validation :geocode *Will geocode only after the input is validated.
+
+15. Tinker the controller actions
+Modify the show action in order to display the added UrbanGym
+
+***For authentication/log in check out the GEM NIFTY-GENERATORS.
+
+
