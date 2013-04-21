@@ -1,0 +1,16 @@
+<h1>Urban Workouts</h1>
+<h2>Here's a list of all the exercises.
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for exercise in @exercises %>
+		 <tr>
+		 	<td><%= link_to exercise.name, exercise_path(exercise)%></td>
+		 </tr>
+		<% end %>
+	</tbody>
+</table>
