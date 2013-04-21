@@ -1,0 +1,17 @@
+<%= form_for(@gym) do |f| %>
+<div>
+  <%= f.label :full_street_address %>
+  <%= f.text_field :full_street_address %>
+</div>
+<div>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+<div>
+  <%= f.label :picture %>
+  <%= f.text_field :picture %>
+</div>
+<div>
+  <%= f.submit %>
+</div>
+<% end %>

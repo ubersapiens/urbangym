@@ -1,0 +1,16 @@
+<h1>Welcome to Urban Gym</h1>
+<h2>Here's a list of the top gyms in town.
+<table>
+	<thead>
+		<tr>
+			<th>Address</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for gym in @gyms %>
+		 <tr>
+		 	<td><% link_to gym.full_street_address, gym_path(gym)%></td>
+		 </tr>
+		<% end %>
+	</tbody>
+</table>

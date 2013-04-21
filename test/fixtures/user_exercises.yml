@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  exercise: 
+  done_on: 2013-04-18
+  reps: 1
+  time: 1.5
+
+two:
+  user: 
+  exercise: 
+  done_on: 2013-04-18
+  reps: 1
+  time: 1.5

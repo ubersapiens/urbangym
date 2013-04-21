@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: urbangym
+  pool: 5
+  username: JFP
+  password: 
+
+# test:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: urbangym
+#   pool: 5
+#   username: JFP
+#   password: 
+
+# production:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: urbangym
+#   username: JFP
+#   password: 
+#   pool: 5
+#   timeout: 5000
