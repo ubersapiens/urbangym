@@ -9,7 +9,7 @@ gem 'postgres-pr'
 gem 'pg'
 gem 'geocoder'
 gem "twitter-bootstrap-rails"
-
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,3 +44,4 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+gem "mocha", :group => :test

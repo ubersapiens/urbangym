@@ -1,21 +1,23 @@
 <%= form_for(@user) do |f| %>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div>
-  <%= f.label :date_of_birth %>
-  <%= f.text_field :date_of_birth %>
-</div>
-<div>
-  <%= f.label :my_workout %>
-  <%= f.text_area :my_workout %>
-</div>
-<div>
-  <%= f.label :my_diet %>
-  <%= f.text_area :my_diet %>
-</div>
-<div>
-  <%= f.submit %>
-</div>
+
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <p>
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p><%= f.submit (@user.new_record? ? "Sign up" : "Update") %></p>
 <% end %>

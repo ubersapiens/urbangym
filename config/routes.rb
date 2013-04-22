@@ -1,7 +1,29 @@
 Urbangym::Application.routes.draw do
+  get "sites/home"
+
+  get "sites/about"
+
+  match 'user/edit' => 'users#edit', :as => :edit_current_user
+
+  match 'signup' => 'users#new', :as => :sign_up
+
+  match 'logout' => 'sessions#destroy', :as => :logout
+
+  match 'login' => 'sessions#new', :as => :log_in
+
+  #Routes added to match the Profile methods in the UserController. 
+#  match 'editprofile' => 'users#edit_profile', :as => :edit_profile
+
+  root :to => "sites#home"
+
+  resources :sessions
   resources :exercises
   resources :gyms
-  resources :users
+  resources :users do
+    member do
+      match 'edit_profile', :as => :edit_profile
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +74,7 @@ Urbangym::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'gyms#index'
+  # root :to => 'gyms#index'
 
   # See how all your routes lay out with "rake routes"
 

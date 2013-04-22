@@ -101,4 +101,6 @@ Modify the show action in order to display the added UrbanGym
 
 ***For authentication/log in check out the GEM NIFTY-GENERATORS.
 
+***For email mechanisms in the app check out http://guides.rubyonrails.org/action_mailer_basics.html. (Implementation for lost/reset password)
+
 

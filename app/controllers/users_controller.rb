@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # before_filter :login_required, :except => [:new,:create]
+
   def index
     @users = User.all
 
@@ -19,15 +21,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save 
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else 
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      redirect_to root_url, :notice => "Signed up!"
+    else
+      render "new"
     end
   end
 
@@ -41,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
 
     respond_to do |format|
       format.html
@@ -50,11 +47,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else 
         format.html { render action: 'edit' }
@@ -68,8 +65,33 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to_gym_url }
+      format.html { redirect_to_user_url }
       format.json { head :no_content }
+    end
+  end
+
+  #Included after the implementation of the authentication in order to have methods that create/edit a user's Profile information.  
+
+  def edit_profile
+    @user = current_user
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @user }
+    end
+  end
+
+  def update_profile
+    @user = current_user
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.json { head :no_content }
+      else 
+        format.html { render action: 'edit' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 end
