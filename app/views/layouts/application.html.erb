@@ -1,34 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Urban Monkey</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<div id="user_nav">
-  <% if current_user %>
-  	<%= link_to "Home", sites_home_path %>
-  	<%= link_to "Profile", edit_profile_user_path(current_user) %>
-  	<%= link_to "Gyms", new_gym_path %>
-    <%= link_to "Exercises", new_exercise_path %>
-  	<%= link_to "About", sites_about_path %>
-  	<%= link_to "Log out", logout_path %>
-    Logged in as <%= current_user.email %>.
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "Log in", log_in_path %>
-  <% end %>
-</div>
-
-
-	<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-
-<%= yield %>
-
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "URBAN MONKEY" %></title>
+    <meta name="description" content="pushing human performance">
+    <meta name="author" content="JFP">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render partial: 'layouts/navigation' %>
+        </div>
+      </nav>
+    </header>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render partial: 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
 </html>

@@ -35,6 +35,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (2.3.1.0)
+      sass (~> 3.2)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -48,7 +50,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    geocoder (1.1.7)
+    geocoder (1.1.8)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -93,7 +95,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
-    sass (3.2.7)
+    sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -108,10 +110,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.2.6)
-      actionpack (>= 3.1)
-      execjs
-      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.0.1)
       execjs (>= 0.3.0)
@@ -124,6 +122,7 @@ DEPENDENCIES
   bcrypt-ruby
   better_errors
   binding_of_caller
+  bootstrap-sass
   coffee-rails (~> 3.2.1)
   geocoder
   jquery-rails
@@ -132,5 +131,4 @@ DEPENDENCIES
   postgres-pr
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
-  twitter-bootstrap-rails
   uglifier (>= 1.0.3)

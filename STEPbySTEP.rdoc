@@ -103,4 +103,9 @@ Modify the show action in order to display the added UrbanGym
 
 ***For email mechanisms in the app check out http://guides.rubyonrails.org/action_mailer_basics.html. (Implementation for lost/reset password)
 
+***When keeping the sign up form in the Home sites controller we must input a blank user through >> user = User.new. Followed by the following in the home.html (login).
+form method='post' action='/login'
+input type='text' name='email' placeholder='Email address'
+input type='password' name='password' placeholder='Password'
+input type='submit' value='login'
 
