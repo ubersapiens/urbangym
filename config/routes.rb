@@ -21,7 +21,9 @@ Urbangym::Application.routes.draw do
   resources :gyms
   resources :users do
     member do
-      match 'edit_profile', :as => :edit_profile
+      get 'edit_profile', :as => :edit_profile
+      put 'add_gym', :as => :add_gym
+      put 'add_exercise', :as => :add_exercise
     end
   end
 

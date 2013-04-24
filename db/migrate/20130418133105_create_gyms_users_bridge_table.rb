@@ -1,13 +1,11 @@
 class CreateGymsUsersBridgeTable < ActiveRecord::Migration
   def change
-    create_table :user_gyms do |t|
+    create_table :gyms_users, :id => false do |t|
       t.references :user
       t.references :gym
-
-      t.timestamps
     end
-    add_index :user_gyms, :user_id
-    add_index :user_gyms, :gym_id
-    add_index :user_gyms, [ :gym_id, :user_id ], :unique => true
+    add_index :gyms_users, :user_id
+    add_index :gyms_users, :gym_id
+    add_index :gyms_users, [ :gym_id, :user_id ], :unique => true
   end
 end

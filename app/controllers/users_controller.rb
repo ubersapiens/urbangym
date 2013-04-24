@@ -60,6 +60,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_gym
+    @user = current_user
+    @user.gyms << Gym.find(params[:user][:gyms])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.json { head :no_content }
+      else 
+        format.html { render action: 'edit' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def add_exercise
+    @user = current_user
+    @user.exercises << Exercise.find(params[:user][:exercise][:reps])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.json { head :no_content }
+      else 
+        format.html { render action: 'edit' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

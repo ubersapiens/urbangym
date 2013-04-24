@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 20130418142937) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "gyms_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "gym_id"
+  end
+
+  add_index "gyms_users", ["gym_id", "user_id"], :name => "index_gyms_users_on_gym_id_and_user_id", :unique => true
+  add_index "gyms_users", ["gym_id"], :name => "index_gyms_users_on_gym_id"
+  add_index "gyms_users", ["user_id"], :name => "index_gyms_users_on_user_id"
+
   create_table "user_exercises", :force => true do |t|
     t.integer  "user_id"
     t.integer  "exercise_id"
@@ -41,16 +50,6 @@ ActiveRecord::Schema.define(:version => 20130418142937) do
 
   add_index "user_exercises", ["exercise_id"], :name => "index_user_exercises_on_exercise_id"
   add_index "user_exercises", ["user_id"], :name => "index_user_exercises_on_user_id"
-
-  create_table "user_gyms", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "gym_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "user_gyms", ["gym_id"], :name => "index_user_gyms_on_gym_id"
-  add_index "user_gyms", ["user_id"], :name => "index_user_gyms_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
