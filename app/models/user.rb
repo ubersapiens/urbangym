@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :date_of_birth, :email, :my_diet, :my_workout, :gyms, :user_gyms, :exercises, :user_exercises
+  attr_accessible :name, :email, :password, :password_confirmation, :date_of_birth, :email, :my_diet,
+    :my_workout, :gyms, :exercises, :user_exercises
 
-  has_many :user_gyms
-  has_many :gyms, :through => :user_gyms
   has_many :user_exercises
   has_many :exercises, :through => :user_exercises
+
+  has_and_belongs_to_many :gyms
 
   attr_accessor :password
   before_save :encrypt_password

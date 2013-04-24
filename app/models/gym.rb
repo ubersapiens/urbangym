@@ -1,8 +1,7 @@
 class Gym < ActiveRecord::Base
-  attr_accessible :description, :full_street_address, :latitude, :longitude, :picture, :users, :user_gyms
+  attr_accessible :description, :full_street_address, :latitude, :longitude, :picture, :users
 
-  has_many :user_gyms
-  has_many :users, :through => :user_gyms
+  has_and_belongs_to_many :users
 
   geocoded_by :full_street_address
 

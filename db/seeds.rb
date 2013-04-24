@@ -9,7 +9,6 @@
 User.delete_all
 Gym.delete_all
 Exercise.delete_all
-UserGym.delete_all
 UserExercise.delete_all
 
 u1 = User.create({ email: 'a@hotmail.com', password: '12345', name: 'Bruce Wayne', date_of_birth: Date.new(1991,4,10), my_workout: 'Pullups x 20', my_diet: 'Steak and brown rice' })
