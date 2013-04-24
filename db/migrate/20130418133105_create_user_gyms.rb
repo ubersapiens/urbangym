@@ -3,7 +3,6 @@ class CreateUserGyms < ActiveRecord::Migration
     create_table :user_gyms do |t|
       t.references :user
       t.references :gym
-      t.boolean :is_favorite
 
       t.timestamps
     end

@@ -3,9 +3,7 @@ class CreateUserExercises < ActiveRecord::Migration
     create_table :user_exercises do |t|
       t.references :user
       t.references :exercise
-      t.date :done_on
       t.integer :reps
-      t.float :time
 
       t.timestamps
     end

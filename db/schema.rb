@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422095018) do
+ActiveRecord::Schema.define(:version => 20130418142937) do
 
   create_table "exercises", :force => true do |t|
     t.string   "name"
@@ -34,9 +34,7 @@ ActiveRecord::Schema.define(:version => 20130422095018) do
   create_table "user_exercises", :force => true do |t|
     t.integer  "user_id"
     t.integer  "exercise_id"
-    t.date     "done_on"
     t.integer  "reps"
-    t.float    "time"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -47,9 +45,8 @@ ActiveRecord::Schema.define(:version => 20130422095018) do
   create_table "user_gyms", :force => true do |t|
     t.integer  "user_id"
     t.integer  "gym_id"
-    t.boolean  "is_favorite"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "user_gyms", ["gym_id"], :name => "index_user_gyms_on_gym_id"
@@ -57,14 +54,14 @@ ActiveRecord::Schema.define(:version => 20130422095018) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.string   "name"
     t.date     "date_of_birth"
     t.text     "my_workout"
     t.text     "my_diet"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.string   "password_hash"
-    t.string   "password_salt"
   end
 
 end

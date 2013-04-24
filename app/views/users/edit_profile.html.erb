@@ -1,3 +1,24 @@
-<h1>Update user profile</h1>
-
-<%= render partial: 'profile' %>
+<div class="row-fluid">
+        <div class="span6">
+          <h2>Update your profile</h2>
+          <p><%= render partial: 'profile' %></p>
+        </div>
+        <div class="span6">
+          <h2>Gyms</h2>
+          <p>
+          	<ul>
+				<% current_user.gyms.each do |usergym| %>
+				<li><%= usergym.full_street_address %><br></li>
+				<% end %>
+			</ul>
+          </p>
+          <h2>Exercises</h2>
+          <p>
+          	<ul>
+          		<% current_user.exercises.each do |userexercise| %>
+          		<li><%= userexercise.name %><br></li>
+          		<% end %>
+          	</ul>
+          </p>
+       </div>
+</div>

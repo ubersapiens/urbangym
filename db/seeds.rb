@@ -33,9 +33,12 @@ u1.gyms << g1
 u1.gyms << g2
 u2.gyms << g2
 u3.gyms << [g1, g2, g3]
+u4.gyms << [g2, g3]
+
 
 u1.exercises << [e1, e2, e3]
 u2.exercises << [e2, e3]
 u3.exercises << [e1, e2, e3]
+u4.exercises << [e1, e2, e3, e4, e5]
 
 
