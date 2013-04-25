@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else 
         format.html { render action: 'edit' }
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else 
         format.html { render action: 'edit' }
@@ -75,17 +75,21 @@ class UsersController < ApplicationController
 
   def add_exercise
     @user = current_user
-    @user.exercises << Exercise.find(params[:user][:exercise][:reps])
+    @user.exercises << Exercise.find(params[:user][:exercises])
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else 
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def add_reps
+
   end
 
   def destroy
@@ -114,7 +118,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to root_url, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else 
         format.html { render action: 'edit' }

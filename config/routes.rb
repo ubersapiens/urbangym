@@ -1,7 +1,7 @@
 Urbangym::Application.routes.draw do
-  get "sites/home"
+  get 'home' => 'sites#home'
 
-  get "sites/about"
+  get 'about' => 'sites#about'
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -24,6 +24,7 @@ Urbangym::Application.routes.draw do
       get 'edit_profile', :as => :edit_profile
       put 'add_gym', :as => :add_gym
       put 'add_exercise', :as => :add_exercise
+      post 'add_reps', :as => :add_reps
     end
   end
 
