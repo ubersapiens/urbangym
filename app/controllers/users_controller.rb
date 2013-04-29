@@ -91,12 +91,10 @@ before_filter :authorize, :except => [:new, :create]
   end
 
   def add_reps
-    params[:exercises].each do |exercise, reps|
-      UserExercise.create({
-        user: current_user,
-        exercise: Exercise.find(exercise),
-        reps: reps
-      }) unless reps.empty?
+    params[:exercises].each do |exercise_id, reps|
+    user_exercise = UserExercise.find_or_initialize_by_user_id_and_exercise_id(current_user.id, exercise_id); 
+    	user_exercise.reps = reps; 
+    	user_exercise.save
     end
 
     redirect_to user_path(current_user), notice: 'Your reps were successfully updated.'
@@ -115,7 +113,7 @@ before_filter :authorize, :except => [:new, :create]
 
   def edit_profile
     @user = current_user
-    @user_exercises = current_user.exercises.group(:exercise_id) #unless current_user.exercises.empty?
+    @user_exercises = current_user.user_exercises
 
     respond_to do |format|
       format.html
