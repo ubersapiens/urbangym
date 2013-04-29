@@ -1,22 +1,19 @@
 Urbangym::Application.routes.draw do
-  get 'home' => 'sites#home'
+  get 'home' => 'sites#home', :as => :home
 
-  get 'about' => 'sites#about'
+  get 'about' => 'sites#about', :as => :about
 
-  match 'user/edit' => 'users#edit', :as => :edit_current_user
-
-  match 'signup' => 'users#new', :as => :sign_up
+  match 'signup' => 'users#new', :as => :signup
 
   match 'logout' => 'sessions#destroy', :as => :logout
 
-  match 'login' => 'sessions#new', :as => :log_in
+  match 'login' => 'sessions#new', :as => :login
 
-  #Routes added to match the Profile methods in the UserController. 
-#  match 'editprofile' => 'users#edit_profile', :as => :edit_profile
+  match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   root :to => "sites#home"
 
-  resources :sessions
+  resources :sessions, :except => [:update, :show, :edit, :index]
   resources :exercises
   resources :gyms
   resources :users do
@@ -24,7 +21,7 @@ Urbangym::Application.routes.draw do
       get 'edit_profile', :as => :edit_profile
       put 'add_gym', :as => :add_gym
       put 'add_exercise', :as => :add_exercise
-      post 'add_reps', :as => :add_reps
+      post 'add_reps' => 'users#add_reps', :as => :add_reps
     end
   end
 

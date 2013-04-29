@@ -1,4 +1,6 @@
 class ExercisesController < ApplicationController
+before_filter :authorize
+
   def index
     @exercises = Exercise.all
 

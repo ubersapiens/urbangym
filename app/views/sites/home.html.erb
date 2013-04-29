@@ -1,4 +1,87 @@
-<h1>URBAN MONKEY</h1>
-<br>
-<p>Pushing human performance</p>
-<img src="http://s3.amazonaws.com/sfb111/story_xlimage_2010_04_R5770_Bar_Starz_Use_Urban_Workouts_on_Jungle_Gym_04291JPEG.jpg">
+<% if current_user %>
+<div class="row-fluid">
+  	<div class="span6">
+		<div id="map-canvas">
+			<script>
+				$(function() {
+					var mapOptions = {
+			          center: new google.maps.LatLng(51.5178757, -0.1188454),
+			          zoom: 12,
+			          mapTypeId: google.maps.MapTypeId.ROADMAP
+			        };
+			        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+			  		$.getJSON('/gyms.json', function(data) {
+			  			$.each(data, function(index, value) {
+							var markerLatLng = new google.maps.LatLng(data[index].latitude, data[index].longitude);
+						    var marker = new google.maps.Marker({
+					      		position: markerLatLng	,
+					     	 	map: map,
+					      		title: "Hello World!"
+					  		});
+			  			});
+			  		});
+				});
+				// function findLocation() {
+    // 				var address = document.getElementById('address').value;
+    // 				geocoder.geocode( { 'address': address}, function(results, status) {
+    //   					if (status == google.maps.GeocoderStatus.OK) {
+				// 	        map.setCenter(results[0].geometry.location);
+				// 	        var marker = new google.maps.Marker({
+				// 	            map: map,
+				// 	            position: results[0].geometry.location
+				// 	        });
+				// 	    } else {
+				// 	        alert('Location not found: ' + status);
+				// 	    }
+				// 	});
+				// }
+			</script>
+		</div>
+	</div>
+	<div class="span1"></div>
+	<div class="span5">
+		<br>
+		<br>
+		<br>
+		<br>
+		<h2>Find your nearest Urban Gym</h2>
+		<p>Please enter a location</p>
+		<p>
+		    <input type="text" style="width:350px" name="address"/>
+		    <input type="submit" value="Search" />
+  		</p>
+	</div>
+</div>
+
+<% else %>
+
+<div class="row-fluid">	
+  	<div class="span6">
+		
+		<h1>URBAN MONKEY</h1>
+			
+			<p>
+				Pushing human performance
+			</p>
+			
+			<div id="front-picture">
+
+				<img src="http://sphotos-a.xx.fbcdn.net/hphotos-prn1/p480x480/541871_233825293422068_1642269309_n.jpg">
+
+			</div>
+	</div>
+	<div class="span1">
+	</div>
+	<div class="span5">
+		<br>
+		<br>
+		<br>
+		<br>
+		<h2>Join the cult</h2>
+		<p>
+			Urban exercises are strength training exercises that do not require free weights; the practitioner's own weight provides the resistance for the movement. Movements such as the push-up, the pull-up, and the sit-up are some of the most common bodyweight exercises. Such focus allows for the entire urban or outdoor infrastructure to become a playground for the fit. Become an Urban Monkey.
+		</p>
+	</div>
+</div>	
+<% end %>
+

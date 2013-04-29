@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  def index
+before_filter :authorize, :except => [:new, :create]
+
+	def index
     @users = User.all
 
     respond_to do |format|
@@ -51,7 +53,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
-      else 
+      else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -66,7 +68,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
-      else 
+      else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -81,7 +83,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
-      else 
+      else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -89,6 +91,15 @@ class UsersController < ApplicationController
   end
 
   def add_reps
+    params[:exercises].each do |exercise, reps|
+      UserExercise.create({
+        user: current_user,
+        exercise: Exercise.find(exercise),
+        reps: reps
+      }) unless reps.empty?
+    end
+
+    redirect_to user_path(current_user), notice: 'Your reps were successfully updated.'
 
   end
 
@@ -102,10 +113,9 @@ class UsersController < ApplicationController
     end
   end
 
-  #Included after the implementation of the authentication in order to have methods that create/edit a user's Profile information.  
-
   def edit_profile
     @user = current_user
+    @user_exercises = current_user.exercises.group(:exercise_id) #unless current_user.exercises.empty?
 
     respond_to do |format|
       format.html
@@ -120,11 +130,10 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html { redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
-      else 
+      else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 end
-

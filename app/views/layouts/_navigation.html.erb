@@ -1,6 +1,9 @@
 <ul class="nav">
   <% if current_user %>
   <li>
+    <img src="http://housetheatre.org.uk/wp-content/uploads/Hi-Res-Fourth-Monkey-Logo4-e1342734332793-49x49.jpg">
+  </li>
+  <li>
     <%= link_to('Home', home_path)  %>
   </li>
   <li>
@@ -18,15 +21,18 @@
   <li>
     <%= link_to('Log out', logout_path)  %>
   </li>
-  <div class="logged_in_user">
-    Logged in as <%= current_user.email %>
+  <div id="logged_in_user">
+    &nbsp &nbsp Logged in as <%= current_user.email %>
   </div>
   <% else %>
   <li>
-    <%= link_to('Sign up', sign_up_path)  %>
+    <img src="http://housetheatre.org.uk/wp-content/uploads/Hi-Res-Fourth-Monkey-Logo4-e1342734332793-49x49.jpg">
   </li>
   <li>
-    <%= link_to('Log in', log_in_path)  %>
+    <%= link_to('Sign up', signup_path)  %>
+  </li>
+  <li>
+    <%= link_to('Log in', login_path)  %>
   </li>
   <% end %>
 </ul>

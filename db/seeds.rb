@@ -9,6 +9,7 @@
 User.delete_all
 Gym.delete_all
 Exercise.delete_all
+UserExercise.delete_all
 
 u1 = User.create({ email: 'a@hotmail.com', password: '12345', name: 'Bruce Wayne', date_of_birth: Date.new(1991,4,10), my_workout: 'Pullups x 20', my_diet: 'Steak and brown rice' })
 u2 = User.create({ email: 'b@hotmail.com', password: '123456', name: 'Peter Parker', date_of_birth: Date.new(1985,12,10), my_workout: 'Pushups x 50', my_diet: 'Tuna and integral pasta' })
@@ -52,26 +53,26 @@ g18 = Gym.create({ full_street_address: '28 Marylebone High Street, London, UK',
 g19 = Gym.create({ full_street_address: '71 Holborn High Street London, UK', description: 'McDonalds with benches, lead pipe frames', picture: 'http://imagesus.homeaway.co.uk/mda01/8b440b77-c758-440c-8415-fa83eae4efde.1.12' })
 g20 = Gym.create({ full_street_address: '13 Camden Road, London, UK', description: 'Jungle gym complex', picture: 'http://www.henleytowncouncil.gov.uk/files/InTouch/3839/3839_thumblarge.jpg' })
 
-e1 = Exercise.create({ name: 'Pullups', description: 'Regular wide grip pullup variation.', picture: 'http://www.stayfitbuzz.com/wp-content/uploads/2012/04/pull-up-workout-3.jpg' })
-e2 = Exercise.create({ name: 'Muscle ups', description: 'The grandaddy of pull exercises. Combination of sternum pullups and vertical bar pushups.', picture: 'http://www.crossfitignitesydney.com.au/wp-content/uploads/2012/04/Guy-Muscle-Up-2.jpg' })
-e3 = Exercise.create({ name: 'Headstand pushups', description: 'As the name says, headstand presses.', picture: 'http://s3.amazonaws.com/prod.skimble/assets/8551/handstand-push-ups-2_full.jpg' })
-e4 = Exercise.create({ name: 'Hanging crunches', description: 'In a pullups or chinups position, raise your knees towards your chest.', picture: 'http://2.bp.blogspot.com/-8E07xBKDb-k/UAoJAYpMnJI/AAAAAAAAAm0/TRiwzy5MD_c/s640/Hanging_Twist_Body.jpg' })
-e5 = Exercise.create({ name: 'Tabata sprints', description: '20 second sprints. 10 second rests. Repeat 4 times.', picture: 'http://4.bp.blogspot.com/_Zhg_lxt3lTw/S727zUaDTZI/AAAAAAAAA3Q/M5zTED3S_1k/s400/sprint.jpg' })
-e6 = Exercise.create({ name: 'Pushups', description: 'Regular military style pushups.', picture: 'http://a57.foxnews.com/global.fncstatic.com/static/managed/img/Health/660/371/MensPushUps.jpg?ve=1' })
-e7 = Exercise.create({ name: 'Sternum pullups', description: 'Pullup variation where the chest reaches the bar.', picture: 'http://crossfituv.com/wp-content/uploads/2012/04/sternum-to-bar.jpg' })
-e8 = Exercise.create({ name: 'Triangle pushups', description: 'Diamond shaped hand posture pushups.', picture: 'http://life.dailyburn.com/wp-content/uploads/2012/05/diamond-pushup.jpg' })
-e9 = Exercise.create({ name: 'Chinups', description: 'Close grip pullups with palms facing the face.', picture: 'http://l.yimg.com/ea/img/-/110303/1_chin_up_16mu5vm-16mu61j.jpg?x=450&q=80&n=1&sig=1nicxKxt4d8B.vUt6Mb2uQ--' })
-e0 = Exercise.create({ name: 'Plank tornado', description: 'Plank variation that goes from side plank, to normal, to side.', picture: 'http://www.inmotionlife.com/wp-content/uploads/Straight-arm-plank-with-rotation.jpg' })
-e11 = Exercise.create({ name: 'Close grip pullups', description: 'Close grip pullup variation.', picture: 'http://www.stayfitbuzz.com/wp-content/uploads/2012/04/pull-up-workout-3.jpg' })
-e12 = Exercise.create({ name: 'Triceps push', description: 'Triceps dips on top of pullups bar.', picture: 'http://www.crossfitignitesydney.com.au/wp-content/uploads/2012/04/Guy-Muscle-Up-2.jpg' })
-e13 = Exercise.create({ name: 'Standing presses', description: 'As the name says, headstand presses.', picture: 'http://s3.amazonaws.com/prod.skimble/assets/8551/handstand-push-ups-2_full.jpg' })
-e14 = Exercise.create({ name: 'Hanging bycicle', description: 'In a pullups or chinups position, raise your knees towards your chest.', picture: 'http://2.bp.blogspot.com/-8E07xBKDb-k/UAoJAYpMnJI/AAAAAAAAAm0/TRiwzy5MD_c/s640/Hanging_Twist_Body.jpg' })
-e15 = Exercise.create({ name: '100m sprints', description: '20 second sprints. 10 second rests. Repeat 4 times.', picture: 'http://4.bp.blogspot.com/_Zhg_lxt3lTw/S727zUaDTZI/AAAAAAAAA3Q/M5zTED3S_1k/s400/sprint.jpg' })
-e16 = Exercise.create({ name: 'Spider pushups', description: 'Regular military style pushups.', picture: 'http://a57.foxnews.com/global.fncstatic.com/static/managed/img/Health/660/371/MensPushUps.jpg?ve=1' })
-e17 = Exercise.create({ name: 'Chest push pullups', description: 'Pullup variation where the chest reaches the bar.', picture: 'http://crossfituv.com/wp-content/uploads/2012/04/sternum-to-bar.jpg' })
-e18 = Exercise.create({ name: 'Pronated pushups', description: 'Diamond shaped hand posture pushups.', picture: 'http://life.dailyburn.com/wp-content/uploads/2012/05/diamond-pushup.jpg' })
-e19 = Exercise.create({ name: 'Inverted grip pullups', description: 'Close grip pullups with palms facing the face.', picture: 'http://l.yimg.com/ea/img/-/110303/1_chin_up_16mu5vm-16mu61j.jpg?x=450&q=80&n=1&sig=1nicxKxt4d8B.vUt6Mb2uQ--' })
-e20 = Exercise.create({ name: 'Regular plank', description: 'Plank variation that goes from side plank, to normal, to side.', picture: 'http://www.inmotionlife.com/wp-content/uploads/Straight-arm-plank-with-rotation.jpg' })
+e1 = Exercise.create({ name: 'Pullups', description: 'Regular wide grip pullup variation.', video_url: 'http://www.youtube.com/embed/guY4MM85-BI' })
+e2 = Exercise.create({ name: 'Muscle ups', description: 'The grandaddy of pull exercises. Combination of sternum pullups and vertical bar pushups.', video_url: 'http://www.youtube.com/embed/CJX1pxL-NMo' })
+e3 = Exercise.create({ name: 'Headstand pushups', description: 'As the name says, headstand presses.', video_url: 'http://www.youtube.com/embed/TFBdxDSdcA0' })
+e4 = Exercise.create({ name: 'Hanging crunches', description: 'In a pullups or chinups position, raise your knees towards your chest.', video_url: 'http://www.youtube.com/embed/iZZernfK6iQ' })
+e5 = Exercise.create({ name: 'Tabata sprints', description: '20 second sprints. 10 second rests. Repeat 4 times.', video_url: 'http://www.youtube.com/embed/8o1GcudPhM8' })
+e6 = Exercise.create({ name: 'Pushups', description: 'Regular military style pushups.', video_url: 'http://www.youtube.com/embed/_m11wH3CUes' })
+e7 = Exercise.create({ name: 'Sternum pullups', description: 'Pullup variation where the chest reaches the bar.', video_url: 'http://www.youtube.com/embed/1pMPCY3GA3o' })
+e8 = Exercise.create({ name: 'Triangle pushups', description: 'Diamond shaped hand posture pushups.', video_url: 'http://www.youtube.com/embed/UfqqEKurvEQ' })
+e9 = Exercise.create({ name: 'Chinups', description: 'Close grip pullups with palms facing the face.', video_url: 'http://www.youtube.com/embed/OST3taemnpQ' })
+e0 = Exercise.create({ name: 'Plank tornado', description: 'Plank variation that goes from side plank, to normal, to side.', video_url: 'http://www.youtube.com/embed/Wry2TR6_y0o' })
+e11 = Exercise.create({ name: 'Close grip pullups', description: 'Close grip pullup variation.', video_url: 'http://www.youtube.com/embed/pr-TIGY6134' })
+e12 = Exercise.create({ name: 'Dips', description: 'Triceps dips on parallel bars.', video_url: 'http://www.youtube.com/embed/BlECujccXpI' })
+e13 = Exercise.create({ name: 'Inverted presses', description: 'As the name says, headstand presses.', video_url: 'http://www.youtube.com/embed/6It9IzhahnQ' })
+e14 = Exercise.create({ name: 'Hanging bicycle', description: 'In a pullups or chinups position, raise your knees towards your chest and cycle.', video_url: 'http://www.youtube.com/embed/yhVlSazXGuE' })
+e15 = Exercise.create({ name: '100m sprints', description: '100 meter sprints for leg development and explosiveness.', video_url: 'http://www.youtube.com/embed/PIUMG2lBaNI' })
+e16 = Exercise.create({ name: 'Spider pushups', description: 'Wide stance pushups pulling the legs towards the elbow to bring in the core.', video_url: 'http://www.youtube.com/embed/XvNZ-OIHgss' })
+e17 = Exercise.create({ name: 'Side to side pullups', description: 'Pullup variation where the chest goes up to one side and then to the other.', video_url: 'http://www.youtube.com/embed/RjZoCUR_dGQ' })
+e18 = Exercise.create({ name: 'Commando pullups', description: 'Close alternative grip pullups.', video_url: 'http://www.youtube.com/embed/0f8r3dz5_TI' })
+e19 = Exercise.create({ name: 'Inverted pullups', description: 'Close grip pullups with your back to the bar.', video_url: 'http://www.youtube.com/embed/0zxcgK6tlLE' })
+e20 = Exercise.create({ name: 'Regular plank', description: 'Plank variation that goes from side plank, to normal, to side.', video_url: 'http://www.youtube.com/embed/R5fq-g5bT5I' })
 
 
 

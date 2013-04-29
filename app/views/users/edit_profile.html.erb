@@ -8,10 +8,10 @@
     <h2>Gyms</h2>
     <p>Your favorite spots:</p>
     <p>
-    	<ul>
-	       <% current_user.gyms.each do |usergym| %>
-	         <li><%= usergym.full_street_address %><br></li>
-	       <% end %>
+      <ul>
+         <% current_user.gyms.each do |usergym| %>
+           <li><%= usergym.full_street_address %><br></li>
+         <% end %>
       </ul>
       <% available_gyms = Gym.all - current_user.gyms %>
       <% unless available_gyms.empty? %>
@@ -30,22 +30,6 @@
       <% end %>
     <% end %>
     <p>Your top moves:</p>
-    <p>
-      <form method="post" action="/users/<%= current_user.id %>/add_reps">
-      	<table>
-          <tbody>
-        		<% current_user.exercises.each do |userexercise| %>
-        		  <tr>
-                <td style="width: 240px"><%= userexercise.name %></td>
-                <td>
-                  <input type="text" name="user_exercise_<%= userexercise.id %>" style="width: 30px">
-                </td>
-              </tr>
-        		<% end %>
-          </tbody>
-      	</table>
-        <input type="submit" value="Update">
-      </form>
-    </p>
+    <%= render partial: 'exercises_form' unless current_user.exercises.empty? %>
   </div>
 </div>

@@ -3,7 +3,7 @@ class CreateExercises < ActiveRecord::Migration
     create_table :exercises do |t|
       t.string :name
       t.text :description
-      t.string :picture
+      t.string :video_url
 
       t.timestamps
     end

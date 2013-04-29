@@ -1,4 +1,6 @@
 class GymsController < ApplicationController
+before_filter :authorize
+
   def index
     @gyms = Gym.all
 

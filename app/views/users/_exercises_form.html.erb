@@ -1,0 +1,8 @@
+<%= form_tag add_reps_user_path(current_user) do %>
+  <% @user_exercises.each do |exercise| %>
+    <%= exercise.name %>
+    <%= number_field_tag "exercises[#{exercise.id}]" %>
+    <br />
+  <% end %>
+  <%= submit_tag %>
+<% end %>
