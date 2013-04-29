@@ -92,14 +92,17 @@ before_filter :authorize, :except => [:new, :create]
 
   def add_reps
     params[:exercises].each do |exercise_id, reps|
-    user_exercise = UserExercise.find_or_initialize_by_user_id_and_exercise_id(current_user.id, exercise_id); 
-    	user_exercise.reps = reps; 
-    	user_exercise.save
+       UserExercise.create({
+        user_id: current_user.id,
+        exercise_id: exercise_id,
+       	reps: reps
+       }) unless reps.empty?
     end
 
-    redirect_to user_path(current_user), notice: 'Your reps were successfully updated.'
+    redirect_to user_path(current_user), notice: 'Your profile was successfully updated.'
 
   end
+
 
   def destroy
     @user = User.find(params[:id])
@@ -113,8 +116,8 @@ before_filter :authorize, :except => [:new, :create]
 
   def edit_profile
     @user = current_user
-    @user_exercises = current_user.user_exercises
-
+    @exercises = current_user.exercises.uniq
+ 
     respond_to do |format|
       format.html
       format.json { render json: @user }
