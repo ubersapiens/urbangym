@@ -1,6 +1,9 @@
-<a class="btn btn-large btn-success" href="<%= new_gym_path %>">Add an Urban Gym</a>
-<h2><font size='5'>Check out the top Urban Gyms in town.</font></h2>
-<table>
+<a class="btn btn-danger" href="<%= new_gym_path %>">Create an Urban Gym</a>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h2><font size='5'>Check out the top Urban Gyms in town</font></h2>
+    <table>
 	<thead></thead>
 	<tbody>
 		<% for gym in @gyms %>
@@ -9,4 +12,10 @@
 		 </tr>
 		<% end %>
 	</tbody>
-</table>
+	</table>
+  </div>
+  <div class="span6">
+  	<br><br><br>
+    <img src="http://crossfitroots.com/wp-content/uploads/2011/07/CrossFitRoots_NicoleRegionals-640x480.jpg">
+  </div>
+</div>

@@ -1,6 +1,9 @@
-<a class="btn btn-large btn-success" href="<%= new_exercise_path %>">Add an Exercise</a> 
-<h1><font size='5'>Read about each move.</font></h1>
-<table>
+<a class="btn btn-danger" href="<%= new_exercise_path %>">Add an Exercise</a>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h2><font size='5'>Read about each move</font></h2>
+    <table>
 	<thead></thead>
 	<tbody>
 		<% for exercise in @exercises %>
@@ -9,4 +12,10 @@
 		 </tr>
 		<% end %>
 	</tbody>
-</table>
+	</table>
+  </div>
+  <div class="span6">
+  	<br><br><br>
+    <img src="http://sphotos-b.xx.fbcdn.net/hphotos-ash3/p480x480/558818_356796571092909_288906471_n.jpg">
+  </div>
+</div>

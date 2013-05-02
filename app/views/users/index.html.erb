@@ -1,6 +1,9 @@
-<a class="btn btn-large btn-success" href="<%= edit_profile_user_path(current_user) %>">Edit Profile</a>
-<h1><font size='5'>You are not alone...Here's a list of Urban Monkeys.</font></h1>
-<table>
+<a class="btn btn-danger" href="<%= edit_profile_user_path(current_user) %>">Edit Profile</a>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h2><font size='5'>You are not alone...meet other Urban Monkeys</font></h2>
+    <table>
 	<thead></thead>
 	<tbody>
 		<% for user in @users %>
@@ -9,4 +12,10 @@
 		 </tr>
 		<% end %>
 	</tbody>
-</table>
+	</table>  
+  </div>
+  <div class="span6">
+  	<br><br><br>
+    <img src="http://www.trbimg.com/img-516f4f5e/turbine/ct-sc-health-pull-ups-em-jpg-20130417/580/580x450">
+  </div>
+</div>

@@ -99,7 +99,7 @@ before_filter :authorize, :except => [:new, :create]
        }) unless reps.empty?
     end
 
-    redirect_to user_path(current_user), notice: 'Your profile was successfully updated.'
+    redirect_to edit_profile_user_url, notice: 'Your profile was successfully updated.'
 
   end
 

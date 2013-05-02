@@ -1,11 +1,11 @@
 <div class="row-fluid">
   <div class="span6">
-    <h2>Update your profile</h2>
-    <a class="btn btn-large btn-success" href="<%= edit_user_path(current_user) %>">Edit Credentials</a>
+    <h2><font size='5'>Update your profile</font></h2>
+    <a class="btn btn-danger" href="<%= edit_user_path(current_user) %>">Edit Credentials</a>
     <p><%= render partial: 'profile' %></p>
   </div>
   <div class="span6">
-    <h2>Gyms</h2>
+    <h2><font size='5'>Gyms</font></h2>
     <p>Your favorite spots:</p>
     <p>
       <ul>
@@ -21,7 +21,7 @@
         <% end %>
       <% end %>
     </p>
-    <h2>Exercises</h2>
+    <h2><font size='5'>Exercises</font></h2>
     <% available_exercises = Exercise.all - current_user.exercises %>
     <% unless available_exercises.empty? %>
       <%= form_for current_user, :url => add_exercise_user_path(current_user) do |f| %>
@@ -29,7 +29,7 @@
         <%= f.submit "Add" %>
       <% end %>
     <% end %>
-    <p>Your top moves:</p>
+    <p><strong>Track your progress.<br> Input your reps:</strong></p>
     <%= render partial: 'exercises_form' unless current_user.exercises.empty? %>
   </div>
 </div>

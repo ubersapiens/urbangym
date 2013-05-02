@@ -1,38 +1,26 @@
-<ul class="nav">
-  <% if current_user %>
-  <li>
-    <img src="http://housetheatre.org.uk/wp-content/uploads/Hi-Res-Fourth-Monkey-Logo4-e1342734332793-49x49.jpg">
-  </li>
-  <li>
-    <%= link_to('Home', home_path)  %>
-  </li>
-  <li>
-    <%= link_to('Users', users_path)  %>
-  </li>
-  <li>
-    <%= link_to('Gyms', gyms_path)  %>
-  </li>
-  <li>
-    <%= link_to('Exercises', exercises_path)  %>
-  </li>
-  <li>
-    <%= link_to('About', about_path)  %>
-  </li>
-  <li>
-    <%= link_to('Log out', logout_path)  %>
-  </li>
-  <div id="logged_in_user">
-    &nbsp &nbsp Logged in as <%= current_user.email %>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="<%= home_path %>">Urban Monkey</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+        <% if current_user %>
+          <li><a href="<%= users_path %>">Users</a></li>
+          <li><a href="<%= gyms_path %>">Gyms</a></li>
+          <li><a href="<%= exercises_path %>">Exercises</a></li>
+          <li><a href="<%= about_path %>">About</a></li>
+          <li><a href="<%= logout_path %>">Logout</a></li>
+        <% else %>
+          <li><a href="<%= signup_path %>">Sign up</a></li>
+          <li><a href="<%= login_path %>">Log in</a></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-  <% else %>
-  <li>
-    <img src="http://housetheatre.org.uk/wp-content/uploads/Hi-Res-Fourth-Monkey-Logo4-e1342734332793-49x49.jpg">
-  </li>
-  <li>
-    <%= link_to('Sign up', signup_path)  %>
-  </li>
-  <li>
-    <%= link_to('Log in', login_path)  %>
-  </li>
-  <% end %>
-</ul>
+</div>
