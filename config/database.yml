@@ -14,11 +14,11 @@ development:
 #   username: JFP
 #   password: 
 
-# production:
-#   adapter: postgresql
-#   encoding: utf8
-#   database: urbangym
-#   username: JFP
-#   password: 
-#   pool: 5
-#   timeout: 5000
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: urbangym
+  username: JFP
+  password: 
+  pool: 5
+  timeout: 5000
